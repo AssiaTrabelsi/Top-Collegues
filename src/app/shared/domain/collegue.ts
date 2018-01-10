@@ -1,16 +1,16 @@
 export class Collegue {
   constructor(
-    private _nom: string,
-    private _urlImage: string,
+    public pseudo: string,
+    public urlImage: string,
     public score: number
   ) {}
 
-  get nom(): string {
-    return this._nom;
+  /*  get pseudo(): string {
+    return this._pseudo;
   }
 
-  set nom(nom1: string) {
-    this._nom = nom1;
+  set pseudo(nom1: string) {
+    this._pseudo = nom1;
   }
 
   get urlImage(): string {
@@ -19,5 +19,5 @@ export class Collegue {
 
   set urlImage(nom1: string) {
     this._urlImage = nom1;
-  }
+  }*/
 }

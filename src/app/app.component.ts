@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Collegue } from "./shared/domain/collegue";
+import { CollegueService } from "./shared/service/collegue.service";
 
 @Component({
   selector: "app-root",
@@ -7,11 +8,17 @@ import { Collegue } from "./shared/domain/collegue";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+  constructor(private cService: CollegueService) {}
   title = "app";
   collegues: Collegue[] = [];
   nom: string;
   ngOnInit() {
-    this.collegues.push(
+    this.cService.listerCollegues().then(colleguesQuiVientDuBack => {
+      this.collegues = colleguesQuiVientDuBack;
+    });
+
+    /*
+     this.collegues.push(
       new Collegue(
         "Melodie",
         "https://www.seduction-efficace.com/wp-content/uploads/2015/04/signaux-dinteret-filles.jpg",
@@ -67,12 +74,18 @@ export class AppComponent implements OnInit {
         "https://media-exp2.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAdQAAAAJDk1MWNmZDAwLTNiMTgtNDU0NC05NzM5LWY3MjRhMjBmOGM0Yg.jpg",
         20
       )
-    );
+    ); */
   }
   add(pseudo: HTMLInputElement, imageUrl: HTMLInputElement) {
     // pour récupérer la valeur saisie, utiliser la propriété value
     this.collegues.push(new Collegue(pseudo.value, imageUrl.value, 10));
+    this.cService
+      .sauvegarder(new Collegue(pseudo.value, imageUrl.value, 10))
+      .then(colleguesQuiVientDuBack => {
+        this.collegues = colleguesQuiVientDuBack;
+      });
     this.nom = pseudo.value;
+
     setTimeout(() => {
       this.nom = null;
     }, 2000);
