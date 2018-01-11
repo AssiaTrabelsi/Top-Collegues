@@ -1,0 +1,15 @@
+<div class="input-group mb-3">
+  <span class="input-group-addon" id="basic-addon1">Limite</span>
+  <input type="text" class="form-control" [formControl]="limiteField" placeholder="Limiter le nombre de collègues à afficher"
+    aria-label="limite" aria-describedby="basic-addon1">
+</div>
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">Filtre par pseudo</span>
+  <input type="text" class="form-control" placeholder="Pseudo" #pseudo aria-describedby="basic-addon1" (keyup)="args = pseudo.value">
+</div>
+<br>
+<div class="card-deck">
+  <div *ngFor="let col of collegues|slice:0:limite | filtreParNom:args">
+    <app-un-collegue [collegue]="col"></app-un-collegue>
+  </div>
+</div>

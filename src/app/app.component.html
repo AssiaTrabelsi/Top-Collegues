@@ -23,12 +23,25 @@
     le Collègues {{nom}} a été ajouté avec succés
     <strong></strong>
   </div>
+  <br>
+  <br>
   <!-- ICI VOTRE FORMULAIRE -->
   <!--{{collegues | json}} -->
-  <p class="red-text text-center ">UnCollegueComponent</p>
-  <div class="card-deck">
-    <div *ngFor="let col of collegues">
-      <app-un-collegue [collegue]="col"></app-un-collegue>
-    </div>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a routerLink="/classique" class="nav-link active">Classique</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/tableau" class="nav-link">Tableau</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/carousel" class="nav-link" href="#">Carrousel</a>
+    </li>
+  </ul>
+
+  <br>
+  <br>
+  <div>
+    <router-outlet></router-outlet>
   </div>
 </div>

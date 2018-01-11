@@ -1,0 +1,26 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Score</th>
+        <th scope="col">Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let collegue of collegues">
+        <th scope="row">
+          <img class="img-container " src={{collegue.urlImage}}>
+        </th>
+        <td>{{collegue.pseudo | uppercase}}</td>
+        <td>{{collegue.score}}</td>
+        <td>
+          <button type="button" id="jaime" class="btn btn-success" (click)="jaime(collegue)">j'aime</button>
+          <button type="button" class="btn btn-danger" (click)="jedeteste(collegue)">je deteste</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

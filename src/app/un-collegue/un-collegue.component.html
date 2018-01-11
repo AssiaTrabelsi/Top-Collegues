@@ -3,8 +3,8 @@
     <img class="card-img-top" src="{{collegue.urlImage}}" alt="Card image cap">
   </div>
   <div class="card-body font-weight-bold text-center ">
-    {{collegue.pseudo}}
-    <p class="card-text " id="score">{{collegue.score}} </p>
+    {{collegue.pseudo | uppercase }}
+    <p class="card-text " id="score">{{collegue.score |score}} </p>
     <button type="button" id="jaime" class="btn btn-success" (click)="jaime()">j'aime</button>
     <button type="button" class="btn btn-danger" (click)="jedeteste()">je deteste</button>
   </div>

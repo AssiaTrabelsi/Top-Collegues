@@ -1,0 +1,13 @@
+<ngb-carousel>
+  <ng-template ngbSlide *ngFor="let collegue of collegues">
+    <div class="carousel-inner">
+      <img src="{{collegue.urlImage}}">
+    </div>
+    <div class="carousel-caption">
+      <h3>{{collegue.pseudo| uppercase}}</h3>
+      <p>{{collegue.score}}</p>
+      <button class="btn btn-success" (click)="jaime(collegue)">j'aime</button>
+      <button class="btn btn-danger" (click)="jedeteste(collegue)">je deteste</button>
+    </div>
+  </ng-template>
+</ngb-carousel>
