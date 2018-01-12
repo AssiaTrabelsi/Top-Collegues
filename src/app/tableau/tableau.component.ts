@@ -15,7 +15,7 @@ export class TableauComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.cService.listerCollegues().then(colleguesQuiVientDuBack => {
+    this.cService.listerCollegues().subscribe(colleguesQuiVientDuBack => {
       this.collegues = colleguesQuiVientDuBack;
     });
   }
@@ -25,28 +25,24 @@ export class TableauComponent implements OnInit {
     // => le score du collègue est augmenté de 10
     //$("score").click(increment);
     //  this.collegue.score += 10;
-    this.cService
-      .aimerUnCollegue(collegue)
-      .then(collegueQuiDuBack => {
-        console.log(collegueQuiDuBack);
-        this.collegues = this.collegues.map(c => {
-          return c.pseudo == collegue.pseudo ? collegueQuiDuBack : c;
-        });
-      })
-      .catch(error => console.log(error));
+    this.cService.aimerUnCollegue(collegue).subscribe(collegueQuiDuBack => {
+      console.log(collegueQuiDuBack);
+      this.collegues = this.collegues.map(c => {
+        return c.pseudo == collegue.pseudo ? collegueQuiDuBack : c;
+      });
+    });
+    //.catch(error => console.log(error));
   }
   jedeteste(collegue) {
     // événement clic sur le bouton "Je déteste"
     // => le score du collègue est diminué de 5
     //this.collegue.score -= 5;
-    this.cService
-      .detesterUnCollegue(collegue)
-      .then(collegueQuiDuBack => {
-        console.log(collegueQuiDuBack);
-        this.collegues = this.collegues.map(c => {
-          return c.pseudo == collegue.pseudo ? collegueQuiDuBack : c;
-        });
-      })
-      .catch(error => console.log(error));
+    this.cService.detesterUnCollegue(collegue).subscribe(collegueQuiDuBack => {
+      console.log(collegueQuiDuBack);
+      this.collegues = this.collegues.map(c => {
+        return c.pseudo == collegue.pseudo ? collegueQuiDuBack : c;
+      });
+    });
+    // .catch(error => console.log(error));
   }
 }

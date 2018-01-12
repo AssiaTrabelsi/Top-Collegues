@@ -19,17 +19,17 @@ export class UnCollegueComponent implements OnInit {
     //  this.collegue.score += 10;
     this.cService
       .aimerUnCollegue(this.collegue)
-      .then(collegueQuiDuBack => {
+      .subscribe(collegueQuiDuBack => {
         console.log(collegueQuiDuBack);
         this.collegue = collegueQuiDuBack;
-      })
-      .catch(error => console.log(error));
+      });
+    //.catch(error => console.log(error));
   }
   jedeteste() {
     // événement clic sur le bouton "Je déteste"
     // => le score du collègue est diminué de 5
     //this.collegue.score -= 5;
-    this.cService.detesterUnCollegue(this.collegue).then(collegue => {
+    this.cService.detesterUnCollegue(this.collegue).subscribe(collegue => {
       this.collegue = collegue;
     });
   }

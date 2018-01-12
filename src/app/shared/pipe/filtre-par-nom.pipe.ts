@@ -13,3 +13,4 @@ export class FiltreParNomPipe implements PipeTransform {
     }
     return value;
   }
+}

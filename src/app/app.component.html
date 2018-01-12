@@ -4,8 +4,12 @@
     Top Collègues
   </h1>
   <p>Les meilleurs collègues de moment</p>
+  <br>
+  <app-site-en-ligne></app-site-en-ligne>
 
+  <br>
   <form>
+
     <div class="form-group mx-auto">
       <label for="pseudo">Pseudo</label>
       <input type="text" #pseudo class="form-control" placeholder="Pseudo">
@@ -19,7 +23,6 @@
   </form>
 
   <div *ngIf="nom" class="alert alert-success">
-
     le Collègues {{nom}} a été ajouté avec succés
     <strong></strong>
   </div>
@@ -38,9 +41,9 @@
       <a routerLink="/carousel" class="nav-link" href="#">Carrousel</a>
     </li>
   </ul>
-
   <br>
   <br>
+  <app-votre-dernier-avis></app-votre-dernier-avis>
   <div>
     <router-outlet></router-outlet>
   </div>

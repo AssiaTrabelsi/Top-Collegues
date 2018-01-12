@@ -15,7 +15,7 @@ export class ClassiqueComponent implements OnInit {
   private args: string;
   limiteField: FormControl = new FormControl();
   ngOnInit() {
-    this.cService.listerCollegues().then(colleguesQuiVientDuBack => {
+    this.cService.listerCollegues().subscribe(colleguesQuiVientDuBack => {
       this.collegues = colleguesQuiVientDuBack;
     });
     this.limiteField.valueChanges.subscribe(term => {
