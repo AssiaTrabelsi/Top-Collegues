@@ -15,6 +15,7 @@ export class CollegueService {
     this.http
       .get<Collegue[]>("http://localhost:8080/api/collegues")
       .subscribe(collegues => this.collegueSubj.next(collegues));
+
     this.signOut();
   }
 
@@ -32,6 +33,7 @@ export class CollegueService {
     pseudo: string;
   }>();
   avis = this.avisSubj.asObservable();
+
   //status
   private statusSubj = new BehaviorSubject<boolean>(navigator.onLine);
   status = this.statusSubj.asObservable();
@@ -76,7 +78,6 @@ export class CollegueService {
   signOut() {
     //Observable.interval(2000).subscribe(() => console.log("ddd"));
     Observable.interval(2000)
-
       .map(() => navigator.onLine)
       .subscribe(st => this.statusSubj.next(st));
   }

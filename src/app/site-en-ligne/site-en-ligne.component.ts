@@ -13,9 +13,7 @@ export class SiteEnLigneComponent implements OnInit {
 
   ngOnInit() {
     this.statusService.status.subscribe(online => {
-      console.log("fgg");
       this.isOnline = online;
-
       this.message = online ? "En ligne" : "Hors ligne";
     });
   }

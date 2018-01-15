@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 
 import { Collegue } from "../shared/domain/collegue";
 import { CollegueService } from "../shared/service/collegue.service";
+import { VoteService } from "../shared/service/vote.service";
 import { error } from "util";
 @Component({
   selector: "app-un-collegue",
@@ -10,14 +11,17 @@ import { error } from "util";
 })
 export class UnCollegueComponent implements OnInit {
   @Input() collegue: Collegue;
-  constructor(private cService: CollegueService) {}
-
+  isOnline: boolean = false;
+  constructor(
+    private cService: CollegueService,
+    private voteService: VoteService
+  ) {}
   jaime() {
     // événement clic sur le bouton "J'aime"
     // => le score du collègue est augmenté de 10
     //$("score").click(increment);
     //  this.collegue.score += 10;
-    this.cService
+    this.voteService
       .aimerUnCollegue(this.collegue)
       .subscribe(collegueQuiDuBack => {
         console.log(collegueQuiDuBack);
@@ -29,9 +33,13 @@ export class UnCollegueComponent implements OnInit {
     // événement clic sur le bouton "Je déteste"
     // => le score du collègue est diminué de 5
     //this.collegue.score -= 5;
-    this.cService.detesterUnCollegue(this.collegue).subscribe(collegue => {
+    this.voteService.detesterUnCollegue(this.collegue).subscribe(collegue => {
       this.collegue = collegue;
     });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.cService.status.subscribe(online => {
+      this.isOnline = online;
+    });
+  }
 }

@@ -11,11 +11,12 @@ import { RouterModule, Routes } from "@angular/router";
 import { CarrouselComponent } from "./carrousel/carrousel.component";
 import { ClassiqueComponent } from "./classique/classique.component";
 import { TableauComponent } from "./tableau/tableau.component";
-import { ScorePipe } from './shared/pipe/score.pipe';
-import { FiltreParNomPipe } from './shared/pipe/filtre-par-nom.pipe';
-import { VotreDernierAvisComponent } from './votre-dernier-avis/votre-dernier-avis.component';
-import { SiteEnLigneComponent } from './site-en-ligne/site-en-ligne.component';
-import { HistoriqueComponent } from './historique/historique.component';
+import { ScorePipe } from "./shared/pipe/score.pipe";
+import { FiltreParNomPipe } from "./shared/pipe/filtre-par-nom.pipe";
+import { VotreDernierAvisComponent } from "./votre-dernier-avis/votre-dernier-avis.component";
+import { SiteEnLigneComponent } from "./site-en-ligne/site-en-ligne.component";
+import { HistoriqueComponent } from "./historique/historique.component";
+import { VoteService } from "./shared/service/vote.service";
 
 const appRoutes: Routes = [
   { path: "classique", component: ClassiqueComponent },
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CollegueService],
+  providers: [CollegueService, VoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

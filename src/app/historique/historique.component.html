@@ -1,3 +1,27 @@
-<p>
-  historique works!
-</p>
+<div class="bs-example">
+  <div class="list-group">
+    <div class="list-group-item list-group-item-action flex-column align-items-start active">
+      <div class="d-flex w-100 justify-content-between">
+        <h5>Historique</h5>
+      </div>
+    </div>
+    <ul>
+
+      <div *ngFor="let vote of votes" class="list-group-item list-group-item-action flex-column align-items-start">
+
+        <div class="d-flex w-100 justify-content-between">
+
+          <div class="img-container mb-1">
+
+            <img src="{{vote.collegue.urlImage}}" style="width:30px;height:30px;">
+
+          </div>
+
+          <h6 class="mb-1">{{vote.collegue.pseudo}} a été {{vote.action}}</h6>
+
+        </div>
+
+        <p class="mb-1">Son score est désormais de {{vote.collegue.score}}
+
+        </p>
+      </div>

@@ -5,7 +5,7 @@
   <div class="card-body font-weight-bold text-center ">
     {{collegue.pseudo | uppercase }}
     <p class="card-text " id="score">{{collegue.score |score}} </p>
-    <button type="button" id="jaime" class="btn btn-success" (click)="jaime()">j'aime</button>
-    <button type="button" class="btn btn-danger" (click)="jedeteste()">je deteste</button>
+    <button [disabled]="!isOnline" type="button" id="jaime" class="btn btn-success" (click)="jaime()">j'aime</button>
+    <button [disabled]="!isOnline" type="button" class="btn btn-danger" (click)="jedeteste()">je deteste</button>
   </div>
 </div>

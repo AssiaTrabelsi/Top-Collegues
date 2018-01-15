@@ -12,8 +12,12 @@ export class AppComponent implements OnInit {
   title = "app";
   collegues: Collegue[] = [];
   nom: string;
+  isOnline: boolean = false;
 
   ngOnInit() {
+    this.cService.status.subscribe(online => {
+      this.isOnline = online;
+    });
     this.cService
       .listerCollegues()
       .subscribe(

@@ -18,10 +18,8 @@
       <label for="urlimage">Url Image</label>
       <input type="text" #imageUrl class="form-control" placeholder="UrlImage">
     </div>
-
-    <button (click)="add(pseudo, imageUrl)" type="submit" class="btn btn-primary">Ajouter un nouveau collègues</button>
+    <button [disabled]="!isOnline" (click)="add(pseudo, imageUrl)" type="submit" class="btn btn-primary">Ajouter un nouveau collègues</button>
   </form>
-
   <div *ngIf="nom" class="alert alert-success">
     le Collègues {{nom}} a été ajouté avec succés
     <strong></strong>
@@ -30,21 +28,27 @@
   <br>
   <!-- ICI VOTRE FORMULAIRE -->
   <!--{{collegues | json}} -->
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a routerLink="/classique" class="nav-link active">Classique</a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="/tableau" class="nav-link">Tableau</a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="/carousel" class="nav-link" href="#">Carrousel</a>
-    </li>
-  </ul>
-  <br>
-  <br>
-  <app-votre-dernier-avis></app-votre-dernier-avis>
-  <div>
-    <router-outlet></router-outlet>
+  <div class="row">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a routerLink="/classique" class="nav-link active">Classique</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/tableau" class="nav-link">Tableau</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/carousel" class="nav-link" href="#">Carrousel</a>
+      </li>
+    </ul>
   </div>
-</div>
+  <br>
+  <br>
+  <div>
+    <app-votre-dernier-avis></app-votre-dernier-avis>
+  </div>
+  <div class="row">
+    <router-outlet></router-outlet>
+    <div class="col">
+      <app-historique></app-historique>
+    </div>
+  </div>
