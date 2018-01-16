@@ -4,6 +4,10 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/map";
+import "rxjs/add/observable/interval";
+
 import { Vote } from "../domain/vote";
 import { Collegue } from "../domain/collegue";
 
@@ -14,7 +18,7 @@ export class VoteService {
     type: string;
     pseudo: string;
   }>();
-  private avis = this.avisSubj.asObservable();
+  avis = this.avisSubj.asObservable();
 
   constructor(private http: HttpClient) {
     this.http
@@ -26,12 +30,17 @@ export class VoteService {
   getAllVote(): Observable<Vote[]> {
     return this.votesSubj.asObservable();
   }
+
   aimerUnCollegue(unCollegue: Collegue): Observable<Collegue> {
-    return this.http.patch<Collegue>(
-      "http://localhost:8080/api/votes/",
-      '{"action":"jaime", "collegue":' + JSON.stringify(unCollegue) + "}",
-      { headers: new HttpHeaders().set("content-type", "application/json") }
-    );
+    return this.http
+      .patch<Collegue>(
+        "http://localhost:8080/api/votes/",
+        '{"action":"jaime", "collegue":' + JSON.stringify(unCollegue) + "}",
+        { headers: new HttpHeaders().set("content-type", "application/json") }
+      )
+      .do(col => {
+        this.avisSubj.next({ type: "success", pseudo: col.pseudo });
+      });
   }
 
   detesterUnCollegue(unCollegue: Collegue): Observable<Collegue> {

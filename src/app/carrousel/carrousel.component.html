@@ -6,8 +6,11 @@
     <div class="carousel-caption">
       <h3>{{collegue.pseudo| uppercase}}</h3>
       <p>{{collegue.score}}</p>
-      <button class="btn btn-success" (click)="jaime(collegue)">j'aime</button>
-      <button class="btn btn-danger" (click)="jedeteste(collegue)">je deteste</button>
+      <button class="btn btn-outline-primary" (click)="jaime(collegue)">j'aime</button>
+      <button class="btn btn-outline-danger" (click)="jedeteste(collegue)">je deteste</button>
+      <br>
+      <br>
+      <app-commentaire></app-commentaire>
     </div>
   </ng-template>
 </ngb-carousel>

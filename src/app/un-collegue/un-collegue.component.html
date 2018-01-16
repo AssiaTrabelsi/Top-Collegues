@@ -5,7 +5,10 @@
   <div class="card-body font-weight-bold text-center ">
     {{collegue.pseudo | uppercase }}
     <p class="card-text " id="score">{{collegue.score |score}} </p>
-    <button [disabled]="!isOnline" type="button" id="jaime" class="btn btn-success" (click)="jaime()">j'aime</button>
-    <button [disabled]="!isOnline" type="button" class="btn btn-danger" (click)="jedeteste()">je deteste</button>
+    <button [disabled]="!isOnline" id="jaime" class="btn btn-outline-primary" (click)="jaime()">j'aime</button>
+    <button [disabled]="!isOnline" class="btn btn-outline-danger" (click)="jedeteste()">je deteste</button>
+    <br>
+    <br>
+    <app-commentaire [collegue]="collegue"></app-commentaire>
   </div>
 </div>

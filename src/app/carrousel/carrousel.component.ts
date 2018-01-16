@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Collegue } from "../shared/domain/collegue";
 import { CollegueService } from "../shared/service/collegue.service";
 import { NgbCarouselConfig } from "@ng-bootstrap/ng-bootstrap";
+import { VoteService } from "../shared/service/vote.service";
 @Component({
   selector: "app-carrousel",
   templateUrl: "./carrousel.component.html",
@@ -10,7 +11,11 @@ import { NgbCarouselConfig } from "@ng-bootstrap/ng-bootstrap";
 })
 export class CarrouselComponent implements OnInit {
   collegues: Collegue[] = [];
-  constructor(private cService: CollegueService, config: NgbCarouselConfig) {
+  constructor(
+    private voteService: VoteService,
+    private cService: CollegueService,
+    config: NgbCarouselConfig
+  ) {
     //config.interval = 10000;
     // config.wrap = true;
     //config.keyboard = false;
@@ -26,7 +31,7 @@ export class CarrouselComponent implements OnInit {
     // => le score du collègue est augmenté de 10
     //$("score").click(increment);
     //  this.collegue.score += 10;
-    this.cService.aimerUnCollegue(collegue).subscribe(collegueQuiDuBack => {
+    this.voteService.aimerUnCollegue(collegue).subscribe(collegueQuiDuBack => {
       console.log(collegueQuiDuBack);
       this.collegues = this.collegues.map(c => {
         return c.pseudo == collegue.pseudo ? collegueQuiDuBack : c;
@@ -38,12 +43,14 @@ export class CarrouselComponent implements OnInit {
     // événement clic sur le bouton "Je déteste"
     // => le score du collègue est diminué de 5
     //this.collegue.score -= 5;
-    this.cService.detesterUnCollegue(collegue).subscribe(collegueQuiDuBack => {
-      console.log(collegueQuiDuBack);
-      this.collegues = this.collegues.map(c => {
-        return c.pseudo == collegue.pseudo ? collegueQuiDuBack : c;
+    this.voteService
+      .detesterUnCollegue(collegue)
+      .subscribe(collegueQuiDuBack => {
+        console.log(collegueQuiDuBack);
+        this.collegues = this.collegues.map(c => {
+          return c.pseudo == collegue.pseudo ? collegueQuiDuBack : c;
+        });
       });
-    });
     // .catch(error => console.log(error));
   }
 }

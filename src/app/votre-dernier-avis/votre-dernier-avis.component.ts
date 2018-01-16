@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CollegueService } from "../shared/service/collegue.service";
+import { VoteService } from "../shared/service/vote.service";
 
 @Component({
   selector: "app-votre-dernier-avis",
@@ -7,12 +7,12 @@ import { CollegueService } from "../shared/service/collegue.service";
   styleUrls: ["./votre-dernier-avis.component.css"]
 })
 export class VotreDernierAvisComponent implements OnInit {
-  constructor(private collegueSvc: CollegueService) {}
+  constructor(private voteSvc: VoteService) {}
   type = "secondary";
   message = "Aucun dernier avis";
 
   ngOnInit() {
-    this.collegueSvc.avis.subscribe(avis => {
+    this.voteSvc.avis.subscribe(avis => {
       this.type = avis.type;
       this.message =
         this.type === "danger"

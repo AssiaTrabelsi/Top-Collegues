@@ -17,6 +17,8 @@ import { VotreDernierAvisComponent } from "./votre-dernier-avis/votre-dernier-av
 import { SiteEnLigneComponent } from "./site-en-ligne/site-en-ligne.component";
 import { HistoriqueComponent } from "./historique/historique.component";
 import { VoteService } from "./shared/service/vote.service";
+import { CommentaireComponent } from "./commentaire/commentaire.component";
+import { CommentaireService } from "./shared/service/commentaire.service";
 
 const appRoutes: Routes = [
   { path: "classique", component: ClassiqueComponent },
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     FiltreParNomPipe,
     VotreDernierAvisComponent,
     SiteEnLigneComponent,
-    HistoriqueComponent
+    HistoriqueComponent,
+    CommentaireComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CollegueService, VoteService],
+  providers: [CollegueService, VoteService, CommentaireService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

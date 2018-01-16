@@ -26,14 +26,14 @@ export class CollegueService {
   }*/
 
   private collegueSubj = new BehaviorSubject<Collegue[]>([]);
-  collegues = this.collegueSubj.asObservable();
-  //avis
+  //collegues = this.collegueSubj.asObservable();
+  /*  //avis
   private avisSubj = new Subject<{
     type: string;
     pseudo: string;
   }>();
   avis = this.avisSubj.asObservable();
-
+*/
   //status
   private statusSubj = new BehaviorSubject<boolean>(navigator.onLine);
   status = this.statusSubj.asObservable();
@@ -52,6 +52,8 @@ export class CollegueService {
       newCollegue
     );
   }
+
+  /*
   aimerUnCollegue(unCollegue: Collegue): Observable<Collegue> {
     return this.http
       .patch<Collegue>(
@@ -73,7 +75,7 @@ export class CollegueService {
       .do(col => {
         this.avisSubj.next({ type: "danger", pseudo: col.pseudo });
       });
-  }
+  }*/
 
   signOut() {
     //Observable.interval(2000).subscribe(() => console.log("ddd"));
